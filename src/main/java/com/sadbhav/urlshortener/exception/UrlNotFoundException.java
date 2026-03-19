@@ -1,13 +1,11 @@
 package com.sadbhav.urlshortener.exception;
 
-public class UrlNotFoundException extends RuntimeException{
+public class UrlNotFoundException extends ResourceNotFoundException{
     public UrlNotFoundException(String message){
-        super(message);
-        // super passes message to RuntimeException
+        super("Url does not exist");
     }
     public UrlNotFoundException(String message, Throwable cause){
-        super(message,cause);
-        // sometimes we throw the cause of error too
+        super("Url does not exist",cause);
     }
 }
 

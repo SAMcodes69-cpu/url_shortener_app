@@ -24,6 +24,10 @@ public class GlobalExceptionHandler{
         String message = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
         return responseBuilder(HttpStatus.BAD_REQUEST, message);
     }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserNotFoundException ex){
+        return responseBuilder(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
     // helper function to avoid coding again and again
     private ResponseEntity<ErrorResponse> responseBuilder(HttpStatus status,String message){
         ErrorResponse errorResponse = new ErrorResponse(

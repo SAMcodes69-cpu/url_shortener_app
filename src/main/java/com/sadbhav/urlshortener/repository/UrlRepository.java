@@ -7,9 +7,10 @@ import java.util.Optional;
 
 @Repository
 public interface UrlRepository extends JpaRepository<Url, Long>{
+    // <Url, Long> tells JPA which table to work with and what is the datatype of primary key
     Optional<Url> findByShortCode(String shortCode);
 
-    Optional<Url> findByOriginalUrl(String ori)
+    Optional<Url> findByOriginalUrl(String originalUrl);
 }
 
 // we use optional in order to return empty instead of crashing the program when url is not found in our db
