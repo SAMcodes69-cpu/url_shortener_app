@@ -19,6 +19,7 @@ public class Url {
     private Long id;
 
     @Setter
+    @Column(unique = true)
     private String originalUrl;
 
     @Setter

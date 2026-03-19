@@ -5,6 +5,8 @@ import com.sadbhav.urlshortener.model.Url;
 import com.sadbhav.urlshortener.repository.UrlRepository;
 import com.sadbhav.urlshortener.util.Base62;
 
+import java.util.Optional;
+
 @Service
 public class UrlServiceImpl implements UrlService{
     public final UrlRepository urlRepository;
@@ -29,5 +31,12 @@ public class UrlServiceImpl implements UrlService{
         Url url = urlRepository.findByShortCode(shortCode)
                 .orElseThrow(() -> new RuntimeException("URL not found"));
         return url.getOriginalUrl();
+    }
+
+    @Override
+    public void delete(String shortCode) {
+        Url url = urlRepository.findByShortCode(shortCode)
+                .orElseThrow(() -> new RuntimeException("URL not found"));
+        urlRepository.delete(url);
     }
 }
